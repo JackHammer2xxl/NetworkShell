@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="shell_client" default="build">
+
+    <property file="build.properties"/>
+
+    <buildnumber file="build.number" />
+
+    <property name="jar.file" value="${ant.project.name}${build.number}.jar"/>
+
+
+    <property name="compilerOutput" value="${bin}/${ant.project.name}/${classes}" />
+    <property name="production" value="${dist}/${ant.project.name}" />
+
+
+
+    <target name="debug">
+        <echo message="${jar.file}" />
+    </target>
+
+
+    <target name="rm" description="">
+        <delete  dir="${dist}/${ant.project.name}"/>
+    </target>
+
+    <target name="compile" description="clean up target and compile source code">
+        <delete  dir="${production}"/>
+        <delete  dir="${compilerOutput}"/>
+        <mkdir dir="${production}" />
+        <mkdir dir="${compilerOutput}" />
+        <copy file="${client.config.log}" todir="${compilerOutput}" />
+        <path id="lib.path.ref">
+            <fileset dir="${lib}" includes="*.jar"/>
+        </path>
+        <javac srcdir="${client.src}" destdir="${compilerOutput}" classpathref="lib.path.ref" />
+    </target>
+
+
+    <target name="build" depends="compile" description="create executable">
+         <jar destfile="${production}/${jar.file}" basedir="${compilerOutput}">
+            <manifest>
+                <attribute name="Main-Class" value="${client.main.class}"/>
+                <attribute name="Class-Path" value="${lib.class.path}"/>
+            </manifest>
+        </jar>
+        <echo file="${production}/${start.batch}" message="java -jar ${jar.file} ${line.separator}pause" />
+        <echo file="${production}/${start.batch}" message="java -jar ${jar.file} -a 127.0.0.1 -p 8782${line.separator}pause" />
+        <mkdir dir="${production}/lib" />
+        <copy file="${lib.class.path}" todir="${production}/${lib}" />
+        <checksum file="${production}/${jar.file}" todir="${production}" algorithm="md5"/>
+    </target>
+
+</project>
+
+
+

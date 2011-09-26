@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="NetworkShell">
+
+     <property file="build.properties"/>
+
+
+    <target name="compress" description="compress the full project">
+
+    </target>
+
+
+    <target name="dependencies" description="load dependencies from WEB" >
+        <mkdir dir="${lib}/downloads"/>
+        <get src="${junit}" dest="${lib}" />
+        <get src="${log4j}" dest="${lib}" />
+
+        <unzip src="${lib}/${junit.zip}" dest="${lib}/junit"/>
+        <unzip src="${lib}/${log4j.zip}" dest="${lib}/log4j"/>
+    </target>
+
+
+</project>

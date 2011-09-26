@@ -1,0 +1,4 @@
+load dependencies with ant task:
+
+log4j 
+junit4

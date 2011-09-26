@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/NetworkShell.iml" filepath="$PROJECT_DIR$/NetworkShell.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShellClient/ShellClient.iml" filepath="$PROJECT_DIR$/ShellClient/ShellClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ShellProvider/ShellProvider.iml" filepath="$PROJECT_DIR$/ShellProvider/ShellProvider.iml" />
+    </modules>
+  </component>
+</project>
+
